@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://fitb5kdhay2k"]
+[gd_scene load_steps=12 format=4 uid="uid://fitb5kdhay2k"]
 
 [ext_resource type="PackedScene" uid="uid://hfedlkef6mqy" path="res://scenes/player.tscn" id="1_5p7es"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_d7oij"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://vjqqrhl6wcds" path="res://scenes/platform.tscn" id="3_5kdyl"]
 [ext_resource type="PackedScene" uid="uid://du2rploq2slya" path="res://scenes/coin.tscn" id="4_nx2en"]
 [ext_resource type="PackedScene" uid="uid://pie4ejam8gun" path="res://scenes/killzone.tscn" id="5_q8q5d"]
-[ext_resource type="PackedScene" uid="uid://da56v8rp0404v" path="res://scenes/slime.tscn" id="6_4p28h"]
 [ext_resource type="FontFile" uid="uid://dshpsw384vsxh" path="res://assets/fonts/PixelOperator8.ttf" id="7_qudw1"]
 
 [sub_resource type="Animation" id="Animation_m8cwp"]
@@ -109,12 +108,6 @@ position = Vector2(45, -77)
 position = Vector2(0, 98)
 shape = SubResource("WorldBoundaryShape2D_q2v8x")
 
-[node name="Slime2" parent="." instance=ExtResource("6_4p28h")]
-position = Vector2(403, 11)
-
-[node name="Slime" parent="." instance=ExtResource("6_4p28h")]
-position = Vector2(194, 3)
-
 [node name="Labels" type="Node" parent="."]
 
 [node name="Label" type="Label" parent="Labels"]
@@ -141,3 +134,5 @@ offset_bottom = 43.0
 theme_override_fonts/font = ExtResource("7_qudw1")
 theme_override_font_sizes/font_size = 16
 text = "Score:0"
+
+[node name="Slimes" type="Node" parent="."]

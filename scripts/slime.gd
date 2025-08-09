@@ -39,12 +39,17 @@ func handle_input(key_char: String) -> void:
 			typed_chars += 1
 			update_word_display()
 			if typed_chars >= word_to_type.length():
-				# 单词输入完成，添加分数并消失
+				# 单词输入完成，添加分数并安排重生
 				var game_manager = get_node("/root/Game/GameManager")
 				if game_manager:
 					game_manager.add_point()
 					game_manager.unregister_slime(self)
-				queue_free()
+					game_manager.schedule_respawn(global_position)
+				# 隐藏slime而不是立即销毁
+				visible = false
+				set_process(false)
+				# 2.5秒后销毁，给重生留时间
+				get_tree().create_timer(2.5).timeout.connect(queue_free)
 
 func _exit_tree() -> void:
 	# 确保在销毁时注销

@@ -2,17 +2,17 @@ extends Node
 
 var score = 0
 var active_slimes = []
-
-@onready var score_label: Label = %ScoreLabel
+var slime_scene = preload("res://scenes/slime.tscn")
+var game_node
 
 func _ready():
-	# 确保游戏管理器可以接收输入
 	set_process_input(true)
+	spawn_slime_at_position(Vector2(399, 21))
+	spawn_slime_at_position(Vector2(194, 6))
 
 func add_point():
-	score +=1
-	score_label.text = "Score:" + str(score)
-	print(score)
+	score += 1
+	%ScoreLabel.text = "Score: " + str(score)
 
 func register_slime(slime):
 	active_slimes.append(slime)
@@ -20,12 +20,22 @@ func register_slime(slime):
 func unregister_slime(slime):
 	active_slimes.erase(slime)
 
-func _input(event: InputEvent) -> void:
+func _input(event):
 	if event is InputEventKey and event.pressed:
-		var key_char = event.as_text_keycode().to_lower()
-		if key_char.length() == 1:
-			# 将输入传递给所有活跃的slime
-			for slime in active_slimes:
-				if slime and is_instance_valid(slime):
-					slime.handle_input(key_char)
+		var character = char(event.unicode)
+		for slime in active_slimes:
+			slime.handle_input(character)
+
+func spawn_slime_at_position(pos):
+	game_node = $"../Slimes"
+	var slime = slime_scene.instantiate()
+	slime.global_position = pos
+	game_node.add_child(slime)
+	active_slimes.append(slime)
+
+func schedule_respawn(pos):
+	get_tree().create_timer(2.0).timeout.connect(_respawn_slime.bind(pos))
+
+func _respawn_slime(pos):
+	spawn_slime_at_position(pos)
 	
