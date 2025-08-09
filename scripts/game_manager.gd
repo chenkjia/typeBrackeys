@@ -9,6 +9,7 @@ func _ready():
 	set_process_input(true)
 	spawn_slime_at_position(Vector2(399, 21))
 	spawn_slime_at_position(Vector2(194, 6))
+	spawn_slime_at_position(Vector2(733, -9))
 
 func add_point():
 	score += 1
