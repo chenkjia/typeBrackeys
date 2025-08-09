@@ -66,3 +66,18 @@ target_position = Vector2(10, 0)
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 position = Vector2(0, 8)
 target_position = Vector2(-10, 0)
+
+[node name="WordLabel" type="RichTextLabel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -35.0
+offset_right = 30.0
+offset_bottom = -15.0
+bbcode_enabled = true
+text = "[color=white]word[/color]"
+fit_content = true
+scroll_active = false
